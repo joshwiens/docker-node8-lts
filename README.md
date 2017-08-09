@@ -1,6 +1,6 @@
 <div align="center">
   <img width="200" height="200"
-    src="https://cdn.worldvectorlogo.com/logos/nodejs.svg">
+    src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg">
   <a href="https://docker.com">
     <img width="200" height="200" vspace="" hspace="25"
       src="https://cdn.worldvectorlogo.com/logos/docker.svg">
