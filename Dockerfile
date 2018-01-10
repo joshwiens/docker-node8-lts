@@ -5,8 +5,7 @@ MAINTAINER d3viant0ne <wiens.joshua@gmail.com>
 # Setup Build ENV
 # ...
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 8.2.1
-ENV NPM_VERSION=5
+ENV NODE_VERSION 8.9.4
 
 # ...
 # Configure Install Environment
@@ -46,6 +45,12 @@ RUN chmod 600 /etc/ssl/private/privkey.pem
 RUN mkdir -p /usr/local/nvm
 RUN chmod 775 /usr/local/nvm
 
+# Install yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+RUN apt-get update && sudo apt-get install yarn
+
 # NodeJS Configuration
 # ...
 ENV NVM_DIR /usr/local/nvm
@@ -61,8 +66,9 @@ RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | b
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
-# Install pm2
-RUN npm i -g pm2
+# Install Global Node Packages
+RUN yarn global add pm2
+RUN yarn global add lerna
 
 EXPOSE 4430
 
